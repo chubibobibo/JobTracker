@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { ExpressError } from "./errors/customError.js";
+import router from "./routes/jobRoutes.js";
 
 import morgan from "morgan";
 //limiting use of morgan only during development
@@ -16,14 +17,8 @@ const app = express();
 //middleware to parse JSON data
 app.use(express.json());
 
-//sample route
-app.post("/", (req, res) => {
-  const { name } = req.body;
-  if (!name) {
-    throw new ExpressError("Something went wrong", 401);
-  }
-  return res.status(200).json({ message: `${name}` });
-});
+//middleware to use routes
+app.use("/api/jobs", router); //specifies a prefix then the router exported.
 
 //midlleware to handle error for pages not found.
 app.use("*", (req, res) => {
