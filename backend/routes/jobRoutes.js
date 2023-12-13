@@ -16,7 +16,7 @@ import {
 //Routes: accepts path and the controller to be used.
 router.get("/", getAllJobs);
 router.post("/", createJob);
-router.post("/:id", getSingleJob);
+router.get("/:id", getSingleJob);
 router.patch("/:id", updateJob);
 router.delete("/:id", deleteJob);
 

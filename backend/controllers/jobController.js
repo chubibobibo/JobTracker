@@ -32,7 +32,8 @@ export const getSingleJob = async (req, res) => {
   const { id } = req.params;
   const foundSingleJob = await JobModel.findById(id);
   if (!foundSingleJob) {
-    return res.status(404).json({ message: "Job does not exist" });
+    throw new ExpressError(`There is no job with an id of ${id}`, 404);
+    // return res.status(404).json({ message: "Job does not exist" });
   }
   res
     .status(200)
@@ -43,7 +44,7 @@ export const getSingleJob = async (req, res) => {
 export const updateJob = async (req, res) => {
   const { id } = req.params;
   if (!req.body) {
-    return res.status(404).json({ message: "no input provided" });
+    throw new ExpressError("no values provided", 400);
   }
   const updateJob = await JobModel.findByIdAndUpdate(id, req.body, {
     new: true,
@@ -56,7 +57,7 @@ export const deleteJob = async (req, res) => {
   const { id } = req.params;
   const deletedJob = await JobModel.findByIdAndDelete(id);
   if (!deletedJob) {
-    return res.status(404).json({ message: "no job exist" });
+    throw new ExpressError(`no job deleted, job does not exist`);
   }
   res.status(200).json({ message: `job ${id} is deleted` });
 };
