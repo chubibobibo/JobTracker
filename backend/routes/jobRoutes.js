@@ -5,9 +5,19 @@ import { Router } from "express";
 const router = Router();
 
 //imports
-import { getAllJobs } from "../controllers/jobController.js";
+import {
+  getAllJobs,
+  createJob,
+  getSingleJob,
+  updateJob,
+  deleteJob,
+} from "../controllers/jobController.js";
 
-//Routes
+//Routes: accepts path and the controller to be used.
 router.get("/", getAllJobs);
+router.post("/", createJob);
+router.post("/:id", getSingleJob);
+router.patch("/:id", updateJob);
+router.delete("/:id", deleteJob);
 
 export default router;

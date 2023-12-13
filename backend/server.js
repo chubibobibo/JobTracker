@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { ExpressError } from "./errors/customError.js";
+import mongoose from "mongoose";
 import router from "./routes/jobRoutes.js";
 
 import morgan from "morgan";
@@ -17,6 +18,12 @@ const app = express();
 //middleware to parse JSON data
 app.use(express.json());
 
+//connecting to database
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(process.env.MONGO_URL);
+}
+
 //middleware to use routes
 app.use("/api/jobs", router); //specifies a prefix then the router exported.
 
@@ -30,6 +37,7 @@ app.use((err, req, res, next) => {
   //   const { status = 400, message = "Something went wrong" } = err;
   const status = err.status || 400;
   const message = err.message || "Something went wrong";
+  console.log(err);
   res.status(status).json({ message: message });
 });
 
