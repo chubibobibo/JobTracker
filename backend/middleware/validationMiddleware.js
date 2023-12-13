@@ -51,11 +51,11 @@ export const validateJobInput = withValidationErrors([
     .withMessage("job location should not be empty"),
   //job status input field validation
   body("jobStatus")
-    .isIn(Object.values(JOB_STATUS))
+    .isIn(Object.values(JOB_STATUS)) //Object.values obtain the contents of the object JOB_STATUS
     .withMessage("invalid job status value"),
   //job type input field validation
   body("jobType")
-    .isIn(Object.values(JOB_TYPE))
+    .isIn(Object.values(JOB_TYPE)) //Object.values obtain the contents of the object JOB_TYPE
     .withMessage("invalid job type value"),
 ]);
 
