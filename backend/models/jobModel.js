@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { JOB_TYPE, JOB_STATUS } from "../utils/constants.js"; //objects that contains the choices for the enum of job status and job type.
 
 const { Schema } = mongoose;
 const JobSchema = new Schema(
@@ -15,14 +16,14 @@ const JobSchema = new Schema(
 
     jobStatus: {
       type: String,
-      enum: ["pending", "for interview", "declined"],
+      enum: Object.values(JOB_STATUS),
       required: true,
       default: "pending",
     },
 
     jobtype: {
       type: String,
-      enum: ["part-time", "full-time", "internship"],
+      enum: Object.values(JOB_TYPE),
       required: true,
       default: "part-time",
     },

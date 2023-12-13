@@ -1,6 +1,11 @@
 //routes for jobs
 import { Router } from "express";
 
+import {
+  validateJobInput,
+  validateParam,
+} from "../middleware/validationMiddleware.js";
+
 //invoke router and save it toa variable;
 const router = Router();
 
@@ -15,9 +20,9 @@ import {
 
 //Routes: accepts path and the controller to be used.
 router.get("/", getAllJobs);
-router.post("/", createJob);
-router.get("/:id", getSingleJob);
-router.patch("/:id", updateJob);
-router.delete("/:id", deleteJob);
+router.post("/", validateJobInput, createJob);
+router.get("/:id", validateParam, getSingleJob);
+router.patch("/:id", validateParam, validateJobInput, updateJob);
+router.delete("/:id", validateParam, deleteJob);
 
 export default router;

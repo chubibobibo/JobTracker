@@ -31,10 +31,11 @@ export const getSingleJob = async (req, res) => {
   //destructure params
   const { id } = req.params;
   const foundSingleJob = await JobModel.findById(id);
-  if (!foundSingleJob) {
-    throw new ExpressError(`There is no job with an id of ${id}`, 404);
-    // return res.status(404).json({ message: "Job does not exist" });
-  }
+  //removing this because it is now included in the validateParam.
+  //   if (!foundSingleJob) {
+  //     throw new ExpressError(`There is no job with an id of ${id}`, 404);
+  //     // return res.status(404).json({ message: "Job does not exist" });
+  //   }
   res
     .status(200)
     .json({ message: `job ${foundSingleJob._id} found`, foundSingleJob });
