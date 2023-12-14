@@ -1,0 +1,27 @@
+//middleware function for authenticating users.
+//we will be verifying the cookies first then jwt.
+//NOTE: To verify cookies we need the package cookie-parser. import it in the entry point of backend (server.js) then isntantiate it
+
+import { ExpressError } from "../errors/customError.js";
+import jwt from "jsonwebtoken";
+
+export const authenticateUser = (req, res, next) => {
+  //   console.log("hello world");
+  //after importing and instantiating cookie parser as a middleware in server.js. We will now have access to the cookie object.
+  //destructure the cookie (we named the cookie userCookie upon logging in)
+  const { userCookie } = req.cookies;
+  //to protect routes we can now check if the destructured cookie exists.
+  if (!userCookie) {
+    throw new ExpressError("user not authenticated", 401);
+  }
+  try {
+    //req.user is an object that will contain the verified token (using jwt.verify())
+    //req.user can be accessed anywahere
+    //basically userCookie contains the token we created that contains the userId and the role of the logged in user.
+    req.user = jwt.verify(userCookie, process.env.JWT_SECRET);
+    console.log(req.user);
+  } catch (err) {
+    console.log(err);
+  }
+  next();
+};

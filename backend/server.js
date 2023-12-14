@@ -8,6 +8,12 @@ import mongoose from "mongoose";
 import jobRouter from "./routes/jobRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 
+//middleware auth
+import { authenticateUser } from "./middleware/authMiddleware.js";
+
+//parsing cookies.
+import cookieParser from "cookie-parser";
+
 import morgan from "morgan";
 //limiting use of morgan only during development
 if (process.env.NODE_ENV === "development") {
@@ -19,6 +25,8 @@ const app = express();
 
 //middleware to parse JSON data
 app.use(express.json());
+//middleware to parse cookies
+app.use(cookieParser());
 
 //connecting to database
 main().catch((err) => console.log(err));
@@ -27,7 +35,7 @@ async function main() {
 }
 
 //middleware to use routes
-app.use("/api/jobs", jobRouter); //specifies a prefix then the router exported.
+app.use("/api/jobs", authenticateUser, jobRouter); //specifies a prefix then the router exported.
 app.use("/api/users", userRouter);
 
 //midlleware to handle error for pages not found.
