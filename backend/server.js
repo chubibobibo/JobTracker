@@ -4,7 +4,9 @@ dotenv.config();
 
 import { ExpressError } from "./errors/customError.js";
 import mongoose from "mongoose";
-import router from "./routes/jobRoutes.js";
+//routes
+import jobRouter from "./routes/jobRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 
 import morgan from "morgan";
 //limiting use of morgan only during development
@@ -25,7 +27,8 @@ async function main() {
 }
 
 //middleware to use routes
-app.use("/api/jobs", router); //specifies a prefix then the router exported.
+app.use("/api/jobs", jobRouter); //specifies a prefix then the router exported.
+app.use("/api/users", userRouter);
 
 //midlleware to handle error for pages not found.
 app.use("*", (req, res) => {
