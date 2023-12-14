@@ -110,3 +110,14 @@ export const validateRegisterUserInput = withValidationErrors([
   body("location").notEmpty().withMessage("location should not be empty"),
   //we are not going to validate roles because it's data will not be coming from the req.body directly.
 ]);
+
+//validation for login input
+//data coming form req.body
+export const validateLoginInput = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("email should not be empty")
+    .isEmail()
+    .withMessage("not a valid email"),
+  body("password").notEmpty().withMessage("password shoould not be empty"),
+]);
