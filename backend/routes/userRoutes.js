@@ -4,6 +4,9 @@ const router = Router();
 //import the user controllers
 import { register } from "../controllers/userController.js";
 
-router.post("/register", register);
+//validation
+import { validateRegisterUserInput } from "../middleware/validationMiddleware.js";
+
+router.post("/register", validateRegisterUserInput, register);
 
 export default router;

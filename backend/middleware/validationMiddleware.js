@@ -5,7 +5,9 @@ import { body, param, validationResult } from "express-validator";
 import { ExpressError } from "../errors/customError.js"; //we need to throw an error if validation fails.
 import { JOB_TYPE, JOB_STATUS } from "../utils/constants.js"; //these are objects that contains the choices for job status and job types that is used in the enum values in the JobModel.
 import mongoose from "mongoose"; //used to compare params id to mongo  database id.
+//models
 import { JobModel } from "../models/jobModel.js";
+import UserModel from "../models/UserModel.js";
 
 //NOTEL:::This part is reusable to other projects.
 
@@ -74,4 +76,37 @@ export const validateParam = withValidationErrors([
       throw new ExpressError("No job found", 404);
     }
   }),
+]);
+
+//validation for register user input
+//this will validate data coming from the req.body
+//save the validation error handler we created to a variable that we can export.
+//NOTE: for email, we are going to check if it lready exist in the database so a user cannot have 2 same emails.
+export const validateRegisterUserInput = withValidationErrors([
+  body("name")
+    .notEmpty()
+    .withMessage("name should not be empty")
+    .isLength({ max: 20 })
+    .withMessage("name should not exceed 20 characters"),
+  //verifying if email from body exist in the database already using mongoose query find()
+  body("email")
+    .isEmail()
+    .withMessage("not a valid email address")
+    .notEmpty()
+    .withMessage("email should not be empty")
+    .custom(async (email) => {
+      const foundEmail = await UserModel.findOne({ email: email });
+      console.log(foundEmail);
+      if (foundEmail) {
+        throw new ExpressError("email already exist", 400);
+      }
+    }),
+  body("password")
+    .notEmpty()
+    .withMessage("password cannot be empty")
+    .isLength({ min: 8 })
+    .withMessage("password cannot be less than 8 characters"),
+  body("lastName").notEmpty().withMessage("last name should not be empty"),
+  body("location").notEmpty().withMessage("location should not be empty"),
+  //we are not going to validate roles because it's data will not be coming from the req.body directly.
 ]);
