@@ -2,7 +2,7 @@ import { Router } from "express";
 const router = Router();
 
 //import the user controllers
-import { register, login } from "../controllers/userController.js";
+import { register, login, logout } from "../controllers/userController.js";
 
 //validation
 import {
@@ -12,5 +12,6 @@ import {
 
 router.post("/register", validateRegisterUserInput, register);
 router.post("/login", validateLoginInput, login);
+router.get("/logout", logout);
 
 export default router;

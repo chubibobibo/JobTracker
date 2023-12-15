@@ -65,3 +65,14 @@ export const login = async (req, res) => {
 
   res.status(201).json({ message: `user ${foundUser.name} is logged in` });
 };
+
+//logout user
+//create a new cookie that will expire immediately. Remember to use the same name as the cookie we created during login (userCookie)
+export const logout = (req, res) => {
+  res.cookie("userCookie", "logout", {
+    //'logout' or leave it blank.
+    httpOnly: true,
+    expires: new Date(Date.now()), //cookie that expires immediately..
+  });
+  res.status(200).json({ message: "user logged out" });
+};
