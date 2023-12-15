@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 //routes
 import jobRouter from "./routes/jobRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
 
 //middleware auth
 import { authenticateUser } from "./middleware/authMiddleware.js";
@@ -37,6 +38,7 @@ async function main() {
 //middleware to use routes
 app.use("/api/jobs", authenticateUser, jobRouter); //specifies a prefix then the router exported.
 app.use("/api/users", userRouter);
+app.use("api/admin", adminRouter);
 
 //midlleware to handle error for pages not found.
 app.use("*", (req, res) => {
