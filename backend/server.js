@@ -38,7 +38,7 @@ async function main() {
 //middleware to use routes
 app.use("/api/jobs", authenticateUser, jobRouter); //specifies a prefix then the router exported.
 app.use("/api/users", userRouter);
-app.use("api/admin", adminRouter);
+app.use("/api/admin", authenticateUser, adminRouter);
 
 //midlleware to handle error for pages not found.
 app.use("*", (req, res) => {
