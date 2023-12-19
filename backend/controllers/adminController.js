@@ -30,3 +30,10 @@ export const updateUser = async (req, res) => {
     .status(200)
     .json({ message: `user ${updatedUser.name} is updated`, updatedUser });
 };
+
+//obtain number of users and jobs entries in the app
+export const getAppStats = async (req, res) => {
+  const totalUsers = await UserModel.countDocuments();
+  const totalJobs = await JobModel.countDocuments();
+  res.status(201).json({ totalUsers, totalJobs });
+};

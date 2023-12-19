@@ -25,3 +25,11 @@ export const authenticateUser = (req, res, next) => {
   }
   next();
 };
+
+//authenticating users for role that is admin
+export const authorizePermission = (req, res, next) => {
+  if (req.user.role !== "admin") {
+    throw new ExpressError("user is not authorized", 401);
+  }
+  next();
+};
