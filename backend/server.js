@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === "development") {
 
 const app = express();
 
+app.use(cors());
 //middleware to parse JSON data
 app.use(express.json());
 //middleware to parse cookies
