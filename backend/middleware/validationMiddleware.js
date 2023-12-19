@@ -121,3 +121,27 @@ export const validateLoginInput = withValidationErrors([
     .withMessage("not a valid email"),
   body("password").notEmpty().withMessage("password shoould not be empty"),
 ]);
+
+//validation for the updateUser
+//will be checking the
+export const validateUpdateUser = withValidationErrors([
+  body("name")
+    .notEmpty()
+    .withMessage("name should not be empty")
+    .isLength({ max: 20 })
+    .withMessage("should not exceed 20 characters"),
+  body("email")
+    .notEmpty()
+    .withMessage("email should not be empty")
+    .isEmail()
+    .withMessage("not a valid email")
+    .custom(async (email, { req }) => {
+      //pass the req object to compare the id of the foundUser to req.user
+      const foundUser = await UserModel.findOne({ email: email });
+      if (foundUser && foundUser._id.toString() !== req.user.userId)
+        //needs to convert the foundUser._id to string becuase it was returned as an ObjectId
+        throw new ExpressError("user not authorized", 401);
+    }),
+  body("lastName").notEmpty().withMessage("last name should not be empty"),
+  body("location").notEmpty().withMessage("location should not be empty"),
+]);
