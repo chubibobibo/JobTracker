@@ -15,6 +15,6 @@ import { authorizePermission } from "../middleware/authMiddleware.js";
 
 router.get("/current-user", getCurrentUser);
 router.patch("/update-user", validateUpdateUser, updateUser);
-router.get("/app-stats", authorizePermission, getAppStats);
+router.get("/app-stats", [authorizePermission("admin"), getAppStats]); //only admin can access this.
 
 export default router;

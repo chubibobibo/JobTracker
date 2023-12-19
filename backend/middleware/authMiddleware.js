@@ -27,9 +27,21 @@ export const authenticateUser = (req, res, next) => {
 };
 
 //authenticating users for role that is admin
-export const authorizePermission = (req, res, next) => {
-  if (req.user.role !== "admin") {
-    throw new ExpressError("user is not authorized", 401);
-  }
-  next();
+// export const authorizePermission = (req, res, next) => {
+//   if (req.user.role !== "admin") {
+//     throw new ExpressError("user is not authorized", 401);
+//   }
+//   next();
+// };
+
+//refactoired authorizePermission - more reusable
+export const authorizePermission = (...role) => {
+  //spreading it because sometimes we can pass the admin and user roles so that both of them will have access to a page.
+  return (req, res, next) => {
+    //callback function for the req,res that checks whether the role of the logged in user is included in the roles that we spread.
+    if (!role.includes(req.user.role)) {
+      throw new ExpressError("user not authorized", 401);
+    }
+    next();
+  };
 };
