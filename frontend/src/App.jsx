@@ -1,7 +1,44 @@
 import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+//pages import
+import HomeLayout from "./pages/HomeLayout.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Landing from "./pages/Landing.jsx";
+import DashboardLayout from "./pages/DashboardLayout.jsx";
 
 function App() {
-  return <div>Hello World</div>;
+  const Router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomeLayout />,
+      //children renders an array of object of other pages
+      children: [
+        {
+          index: true,
+          element: <Landing />,
+        },
+        {
+          path: "register", //did not include '/' because register's path is relative to HomeLayout
+          element: <Register />,
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "dashboard",
+          element: <DashboardLayout />,
+        },
+      ],
+    },
+  ]);
+  return (
+    <div>
+      <RouterProvider router={Router} />
+    </div>
+  );
 }
 
 export default App;
