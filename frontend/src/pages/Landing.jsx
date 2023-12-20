@@ -6,6 +6,9 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import Container from "@mui/material/Container";
 
+//import css styles
+import "../utils/styles/LandingPageStyles.css";
+
 function Landing() {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
