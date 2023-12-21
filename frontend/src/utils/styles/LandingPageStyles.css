@@ -27,10 +27,14 @@
   height: auto;
 }
 
+.buttonLanding {
+  margin: 10rem;
+}
+
 @media (max-width: 900px) {
   .landingGrid1 {
     display: flex;
     align-content: center;
-    margin-top: 4rem;
+    margin-top: 6rem;
   }
 }

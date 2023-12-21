@@ -1,26 +1,20 @@
 import { Link } from "react-router-dom";
 //imports materialUI
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
-import Container from "@mui/material/Container";
 
 //import css styles
 import "../utils/styles/LandingPageStyles.css";
 
-function Landing() {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "left",
-    color: theme.palette.text.secondary,
-  }));
+//custom css from materialUI refactored to another file.
+import { Item } from "../utils/customCss/customLandingCss.js";
+import { ColorButton } from "../utils/customCss/customLandingCss.js";
 
+function Landing() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
+        {/* multiple breakpoints */}
         <Grid sm={10} md={6} className='landingGrid1'>
           <Item>
             <h1 className='landingPar'>
@@ -34,9 +28,23 @@ function Landing() {
               eos, placeat nihil vel quisquam harum obcaecati voluptas, eveniet
               pariatur eius enim repellendus.
             </p>
-            <Link to='/register'>Register</Link>
-            <br />
-            <Link to='/login'>Login</Link>
+            <ColorButton variant='contained' className='buttonLanding'>
+              <Link
+                to='/register'
+                style={{ textDecoration: "none", color: "darkGray" }}
+              >
+                Register
+              </Link>
+            </ColorButton>
+            <ColorButton variant='contained' className='buttonLanding'>
+              <Link
+                to='/login'
+                style={{ textDecoration: "none", color: "darkGray" }}
+                className='linkLanding'
+              >
+                Login
+              </Link>
+            </ColorButton>
           </Item>
         </Grid>
         <Grid md={6} sm={0} xs={0} className='landingGrid2'>
