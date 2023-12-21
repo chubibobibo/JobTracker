@@ -50,7 +50,7 @@ app.use("*", (req, res) => {
 //express error handler that will accept errors in all routes and requests.
 app.use((err, req, res, next) => {
   //   const { status = 400, message = "Something went wrong" } = err;
-  const status = err.status || 400;
+  const status = err.status || 404;
   const message = err.message || "Something went wrong";
   console.log(err);
   res.status(status).json({ message: message });

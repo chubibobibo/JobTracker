@@ -31,6 +31,7 @@
   margin: 10rem;
 }
 
+/* at 900px and below the css will take effect */
 @media (max-width: 900px) {
   .landingGrid1 {
     display: flex;
