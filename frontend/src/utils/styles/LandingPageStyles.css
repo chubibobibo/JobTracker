@@ -10,7 +10,9 @@
 
 .landingGrid1 {
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  align-self: center;
+  margin: auto;
 }
 
 .landingGrid2 {
@@ -21,4 +23,14 @@
 .landingLogo {
   display: flex;
   margin: auto;
+  width: 95%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .landingGrid1 {
+    display: flex;
+    align-content: center;
+    margin-top: 4rem;
+  }
 }
