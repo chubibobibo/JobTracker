@@ -1,0 +1,19 @@
+.registerContainer {
+  width: auto;
+}
+
+.registerFormContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.regForm {
+  display: flex;
+  justify-content: center;
+}
+
+.regLabel {
+  align-self: center;
+  padding-bottom: 2rem;
+}
