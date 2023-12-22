@@ -5,7 +5,7 @@
 .registerFormContainer {
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 }
 
 .regForm {
@@ -15,5 +15,6 @@
 
 .regLabel {
   align-self: center;
+  padding-top: 2rem;
   padding-bottom: 2rem;
 }
