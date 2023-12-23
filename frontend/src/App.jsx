@@ -8,6 +8,9 @@ import Register from "./pages/Register.jsx";
 import Landing from "./pages/Landing.jsx";
 import DashboardLayout from "./pages/DashboardLayout.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import AddJob from "./pages/AddJob.jsx";
+import AllJobs from "./pages/AllJobs.jsx";
+import EditJob from "./pages/EditJob.jsx";
 
 function App() {
   const Router = createBrowserRouter([
@@ -33,6 +36,20 @@ function App() {
         {
           path: "dashboard",
           element: <DashboardLayout />,
+          children: [
+            {
+              index: true,
+              element: <AddJob />,
+            },
+            {
+              path: "all-jobs",
+              element: <AllJobs />,
+            },
+            {
+              path: "edit-job/:id", //specifying a param for a way to obtain a specific job entry
+              element: <EditJob />,
+            },
+          ],
         },
       ],
     },
