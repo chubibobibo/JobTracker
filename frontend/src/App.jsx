@@ -12,6 +12,9 @@ import AddJob from "./pages/AddJob.jsx";
 import AllJobs from "./pages/AllJobs.jsx";
 import EditJob from "./pages/EditJob.jsx";
 
+//react router action imports
+import { action as registerAction } from "./pages/Register.jsx";
+
 function App() {
   const Router = createBrowserRouter([
     {
@@ -28,6 +31,7 @@ function App() {
         {
           path: "register", //did not include '/' because register's path is relative to HomeLayout
           element: <Register />,
+          action: registerAction,
         },
         {
           path: "login",

@@ -4,12 +4,22 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+// import IconButton from "@mui/material/IconButton";
+// import MenuIcon from "@mui/icons-material/Menu";
+
+//import useContext() to use the context we created.
+import { useContext } from "react";
+
+//import the context created
+import DashboardContext from "../customHooks/DashboardContext";
 
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const context = useContext(DashboardContext);
+  const { toggleDarkMode, logoutUser } = context;
+  // console.log(cookies);
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -23,7 +33,9 @@ function Navbar() {
                 <Button color='inherit'>Admin</Button>
               </Link>
             </Typography>
-            <Button color='inherit'>Login</Button>
+            <Button color='inherit' onClick={logoutUser}>
+              Logout
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>

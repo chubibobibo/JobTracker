@@ -16,6 +16,7 @@ function RegFormComponent({ label, name, type }) {
           variant='outlined'
           size='small'
           type={type}
+          name={name}
         />
       </div>
     </div>

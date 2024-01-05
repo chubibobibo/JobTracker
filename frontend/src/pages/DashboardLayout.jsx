@@ -17,6 +17,11 @@ function DashboardLayout() {
     console.log(isDarkMode);
   };
 
+  //logging out user
+  const logoutUser = () => {
+    console.log("logout user");
+  };
+
   return (
     //using the context we created (DashboardContext with .provider to wrap around the components that we will be sharing data with.)
     //then providing values in the context provider that we will be passing
@@ -24,7 +29,7 @@ function DashboardLayout() {
       <DashboardContext.Provider
         value={{
           toggleDarkMode,
-          user,
+          logoutUser,
         }}
       >
         <Navbar />
