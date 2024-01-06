@@ -52,6 +52,7 @@ export const login = async (req, res) => {
       expiresIn: "7d",
     }
   );
+  console.log(token);
   //setting up cookies and using the token created as it's value
   //NOTE: res.cookie to setup a cookie, req.cookie to access cookie
   //cookie accepts the name to be given(userCookie), the data it will contain(token) , then object of options (exipry, httpOnly, secure)
@@ -62,7 +63,6 @@ export const login = async (req, res) => {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), //expires in 1 week (1000ms/min/hr/days)
     secure: process.env.NODE_ENV === "production", //sets to true if in production
   });
-
   res.status(201).json({ message: `user ${foundUser.name} is logged in` });
 };
 

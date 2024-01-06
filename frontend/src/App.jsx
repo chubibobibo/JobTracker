@@ -14,6 +14,7 @@ import EditJob from "./pages/EditJob.jsx";
 
 //react router action imports
 import { action as registerAction } from "./pages/Register.jsx";
+import { action as loginAction } from "./pages/Login.jsx";
 
 function App() {
   const Router = createBrowserRouter([
@@ -36,6 +37,7 @@ function App() {
         {
           path: "login",
           element: <Login />,
+          action: loginAction,
         },
         {
           path: "dashboard",

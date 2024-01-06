@@ -16,7 +16,7 @@ export const action = async ({ request }) => {
   const formData = await request.formData(); //using formData() method to obtain data from the forms.
   const data = Object.fromEntries(formData); //converts the formData from the request body to usable objects.
   try {
-    await axios.post("http://localhost:3001/api/users/register", data); //remember to use the proxy that we copied and change it's localhost to the one that we are using in the project.
+    await axios.post("/api/users/register", data); //remember to use the proxy that we copied and change it's localhost to the one that we are using in the project.
     return redirect("/login"); //Note: every successful request needs to return a value.
   } catch (err) {
     console.log(err);
