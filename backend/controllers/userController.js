@@ -34,7 +34,6 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   //look for the user using email
   const foundUser = await UserModel.findOne({ email: req.body.email });
-  console.log(foundUser);
   if (!foundUser) {
     throw new ExpressError("incorrect email or password", 403);
   }
@@ -52,7 +51,6 @@ export const login = async (req, res) => {
       expiresIn: "7d",
     }
   );
-  console.log(token);
   //setting up cookies and using the token created as it's value
   //NOTE: res.cookie to setup a cookie, req.cookie to access cookie
   //cookie accepts the name to be given(userCookie), the data it will contain(token) , then object of options (exipry, httpOnly, secure)
