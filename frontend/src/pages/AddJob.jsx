@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-
+//MUI text inputs
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Stack from "@mui/material/Stack";
 
 import { Form, redirect } from "react-router-dom";
+//toast
+import { toast } from "react-toastify";
 
 //MUI select input field
 import InputLabel from "@mui/material/InputLabel";
@@ -28,15 +30,17 @@ export const action = async ({ request }) => {
   console.log(data);
   try {
     await axios.post("/api/jobs/", data);
-    return redirect("/dashboard");
+    toast.success("Job entry created");
+    return redirect("/dashboard/all-jobs");
   } catch (err) {
     console.log(err);
+    toast.error("Problem saving job entry");
     return err;
   }
 };
 
 function AddJob() {
-  //state to handle select input data
+  //state to handle multiple select input data
   const [selectData, setSelectData] = useState({
     jobStatus: "",
     jobType: "",
