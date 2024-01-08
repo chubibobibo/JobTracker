@@ -1,13 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import { useState } from "react";
+
+//toast alerts
+import { toast } from "react-toastify";
+import axios from "axios";
 
 //importing context created
 import DashboardContext from "../customHooks/DashboardContext.js";
 
 function DashboardLayout() {
   const [isDarkMode, setIsDarkMode] = useState(false); //state for darkmode
-
+  const navigate = useNavigate();
   const user = "Lester";
 
   //function to toggle dark mode
@@ -18,8 +22,15 @@ function DashboardLayout() {
   };
 
   //logging out user
-  const logoutUser = () => {
-    console.log("logout user");
+  const logoutUser = async () => {
+    try {
+      await axios.get("/api/users/logout");
+      navigate("/");
+      toast.success("User logged out");
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    }
   };
 
   return (

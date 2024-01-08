@@ -1,0 +1,48 @@
+/* .addJobContainer {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-self: center;
+} */
+
+.addJobGrid {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  height: 30rem;
+}
+
+/* .grid1Container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
+
+.addJobItem {
+  display: flex;
+  width: 50rem;
+  margin: 1rem;
+}
+
+.firstRow {
+  display: flex;
+  margin: auto;
+}
+
+.divStack {
+  margin: auto;
+}
+
+.inputBox {
+  margin: 1rem;
+}
+
+.header {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.button {
+  margin: 1rem;
+}

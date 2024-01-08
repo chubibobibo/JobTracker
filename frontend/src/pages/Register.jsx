@@ -37,6 +37,7 @@ function Register() {
   return (
     <div className='registerContainer'>
       <Form className='regForm' method='post'>
+        {/* used Stack to have the inputs in one column */}
         <Stack spacing={2}>
           <h1 className='regLabel'>Register</h1>
           <RegFormComponent type='text' label='name' name='name' />
