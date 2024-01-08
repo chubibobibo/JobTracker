@@ -1,9 +1,11 @@
 import { useState } from "react";
+import axios from "axios";
+
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Stack from "@mui/material/Stack";
 
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 
 //MUI select input field
 import InputLabel from "@mui/material/InputLabel";
@@ -18,6 +20,20 @@ import "../utils/styles/AddJobStyles.css";
 //import the input reusbale input fields
 import RegFormComponent from "../components/RegFormComponent.jsx";
 import ButtonComponent from "../components/ButtonComponent.jsx";
+
+//implementing react action
+export const action = async ({ request }) => {
+  const formData = await request.formData(); //obtains data from the forms
+  const data = Object.fromEntries(formData); //converts data to usable object
+  console.log(data);
+  try {
+    await axios.post("/api/jobs/", data);
+    return redirect("/dashboard");
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
 
 function AddJob() {
   //state to handle select input data
@@ -100,8 +116,8 @@ function AddJob() {
                 </div>
                 <div>
                   <RegFormComponent
-                    label={"Position"}
-                    name={"position"}
+                    label={"Location"}
+                    name={"jobLocation"}
                     type={"text"}
                   />
                 </div>
