@@ -19,9 +19,14 @@ import Select from "@mui/material/Select";
 import { Item } from "../utils/customCss/customAddJobCss.js";
 //import custom css for aligning layout
 import "../utils/styles/AddJobStyles.css";
+
 //import the input reusbale input fields
 import RegFormComponent from "../components/RegFormComponent.jsx";
 import ButtonComponent from "../components/ButtonComponent.jsx";
+import SelectFormComponent from "../components/SelectFormComponent.jsx";
+import SelectFormComponent2 from "../components/SelectFormComponent2.jsx";
+
+//iomport objects for select input
 
 //implementing react action
 export const action = async ({ request }) => {
@@ -45,6 +50,20 @@ function AddJob() {
     jobStatus: "",
     jobType: "",
   });
+
+  //object to use as the select input options
+  const statusObj = {
+    pending: "pending",
+    interview: "interview",
+    declined: "declined",
+  };
+
+  const typeObj = {
+    fullTime: "full-time",
+    partTime: "part-time",
+    internship: "internship",
+  };
+
   // const handleChange = (e) => {
   //   setSelectData({ [e.target.name]: e.target.value });
   // };
@@ -53,7 +72,7 @@ function AddJob() {
       return { ...oldData, [e.target.name]: e.target.value };
     });
   };
-
+  // console.log(statusObj);
   return (
     <Form method='post'>
       <div className='addJobContianer'>
@@ -83,40 +102,18 @@ function AddJob() {
                   </Grid>
                 </div>
                 <div className='secondRow'>
-                  <Box sx={{ minWidth: 120 }} className='inputBox'>
-                    <FormControl fullWidth>
-                      <InputLabel id='jobStatus'>Job Status</InputLabel>
-                      <Select
-                        labelId='jobStatus'
-                        id='jobStatus'
-                        name='jobStatus'
-                        value={selectData.jobStatus}
-                        label='Age'
-                        onChange={handleChange}
-                      >
-                        <MenuItem value={"pending"}>Pending</MenuItem>
-                        <MenuItem value={"interview"}>Interview</MenuItem>
-                        <MenuItem value={"declined"}>Declined</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Box>
-                  <Box sx={{ minWidth: 120 }} className='inputBox'>
-                    <FormControl fullWidth>
-                      <InputLabel id='jobType'>Job Type</InputLabel>
-                      <Select
-                        labelId='jobType'
-                        id='jobType'
-                        name='jobType'
-                        value={selectData.jobType}
-                        label='jobType'
-                        onChange={handleChange}
-                      >
-                        <MenuItem value={"full-time"}>Full-Time</MenuItem>
-                        <MenuItem value={"part-time"}>Part-Time</MenuItem>
-                        <MenuItem value={"internship"}>Internship</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Box>
+                  <SelectFormComponent
+                    selectData={selectData}
+                    handleChange={handleChange}
+                    label={"jobStatus"}
+                    status={statusObj}
+                  />
+                  <SelectFormComponent2
+                    selectData={selectData}
+                    handleChange={handleChange}
+                    label={"jobType"}
+                    status={typeObj}
+                  />
                 </div>
                 <div>
                   <RegFormComponent

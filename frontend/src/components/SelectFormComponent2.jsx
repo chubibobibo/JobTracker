@@ -7,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function SelectFormComponent({ selectData, handleChange, label, status }) {
+function SelectFormComponent2({ selectData, handleChange, label, status }) {
   return (
     <>
       <div>
@@ -18,13 +18,13 @@ function SelectFormComponent({ selectData, handleChange, label, status }) {
               labelId={label}
               id={label}
               name={label}
-              value={selectData.jobStatus}
+              value={selectData.jobType}
               label='Age'
               onChange={handleChange}
             >
-              <MenuItem value={status.pending}>{status.pending}</MenuItem>
-              <MenuItem value={status.interview}>{status.interview}</MenuItem>
-              <MenuItem value={status.declined}>{status.declined}</MenuItem>
+              <MenuItem value={status.fullTime}>{status.fullTime}</MenuItem>
+              <MenuItem value={status.partTime}>{status.partTime}</MenuItem>
+              <MenuItem value={status.internship}>{status.internship}</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -32,4 +32,4 @@ function SelectFormComponent({ selectData, handleChange, label, status }) {
     </>
   );
 }
-export default SelectFormComponent;
+export default SelectFormComponent2;
