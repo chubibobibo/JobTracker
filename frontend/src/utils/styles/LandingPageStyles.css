@@ -1,0 +1,41 @@
+.landingIcon {
+  display: flex;
+  margin: 1rem;
+}
+
+.landingPar {
+  display: flex;
+  align-items: center;
+}
+
+.landingGrid1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  align-self: center;
+  margin: auto;
+}
+
+.landingGrid2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.landingLogo {
+  display: flex;
+  margin: auto;
+  width: 95%;
+  height: auto;
+}
+
+.buttonLanding {
+  margin: 10rem;
+}
+
+/* at 900px and below the css will take effect */
+@media (max-width: 900px) {
+  .landingGrid1 {
+    display: flex;
+    align-content: center;
+    margin-top: 6rem;
+  }
+}

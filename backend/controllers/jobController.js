@@ -6,9 +6,11 @@ import "express-async-errors";
 import { JobModel } from "../models/jobModel.js";
 import { ExpressError } from "../errors/customError.js";
 
+//all job routes needs an authenticated user.
 //get all jobs
 export const getAllJobs = async (req, res) => {
-  const allJobs = await JobModel.find({}); //search for eveything.
+  const author = req.user.userId;
+  const allJobs = await JobModel.find({ createdBy: author }); //search for job entries that have the createdBy property same as the req.user.userId.
   //   console.log(allJobs);
   if (allJobs.length === 0) {
     return res.status(200).json({ message: "no jobs available" });
@@ -22,6 +24,8 @@ export const createJob = async (req, res) => {
   if (!req.body) {
     throw new ExpressError("No input provided", 401);
   }
+  //implement the adding of createdBy property for job entries by using the userId in the cookies and adding it in the req.body before creating a new instance of job
+  req.body.createdBy = req.user.userId;
   const newJob = await JobModel.create(req.body);
   res.status(200).json({ message: "New job created", newJob });
 };
@@ -31,11 +35,16 @@ export const getSingleJob = async (req, res) => {
   //destructure params
   const { id } = req.params;
   const foundSingleJob = await JobModel.findById(id);
-  //removing this because it is now included in the validateParam.
-  //   if (!foundSingleJob) {
-  //     throw new ExpressError(`There is no job with an id of ${id}`, 404);
-  //     // return res.status(404).json({ message: "Job does not exist" });
-  //   }
+
+  //implmenting an if statement to check if user logged in is not an admin and not an author of the job entry (both true) will result to a thrown ExpressError. Else if one condition or both returns false then proceed to returnong the foundSingleJob.
+  //Both conditions need s to be TRUE for the Expresserror to be thrown.
+  if (
+    req.user.role !== "admin" &&
+    foundSingleJob.createdBy.toString() !== req.user.userId
+  ) {
+    throw new ExpressError("user is not authorized", 401);
+  }
+  //we have access to the whole job entry data because of foundSingleJob
   res
     .status(200)
     .json({ message: `job ${foundSingleJob._id} found`, foundSingleJob });
