@@ -16,6 +16,7 @@ import EditJob from "./pages/EditJob.jsx";
 import { action as registerAction } from "./pages/Register.jsx";
 import { action as loginAction } from "./pages/Login.jsx";
 import { action as newJobAction } from "./pages/AddJob.jsx";
+import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
 
 function App() {
   const Router = createBrowserRouter([
@@ -52,6 +53,7 @@ function App() {
             {
               path: "all-jobs",
               element: <AllJobs />,
+              loader: allJobsLoader,
             },
             {
               path: "edit-job/:id", //specifying a param for a way to obtain a specific job entry

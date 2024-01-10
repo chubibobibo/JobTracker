@@ -5,8 +5,9 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Stack from "@mui/material/Stack";
 
+//needed for react action
 import { Form, redirect } from "react-router-dom";
-//toast
+//toast alert
 import { toast } from "react-toastify";
 
 //MUI select input field
