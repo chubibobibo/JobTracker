@@ -1,0 +1,10 @@
+.allJobContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.gridContainer {
+  display: flex;
+  justify-content: center;
+}
