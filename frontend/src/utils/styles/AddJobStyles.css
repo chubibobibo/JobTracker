@@ -1,22 +1,9 @@
-/* .addJobContainer {
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  align-self: center;
-} */
-
 .addJobGrid {
   display: flex;
   justify-content: center;
   flex-direction: row;
   height: 30rem;
 }
-
-/* .grid1Container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-} */
 
 .addJobItem {
   display: flex;

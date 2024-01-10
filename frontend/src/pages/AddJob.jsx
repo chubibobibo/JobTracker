@@ -64,9 +64,7 @@ function AddJob() {
     internship: "internship",
   };
 
-  // const handleChange = (e) => {
-  //   setSelectData({ [e.target.name]: e.target.value });
-  // };
+  //handling changes in the select input
   const handleChange = (e) => {
     setSelectData((oldData) => {
       return { ...oldData, [e.target.name]: e.target.value };
