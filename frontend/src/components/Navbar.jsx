@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+// import { red } from "@mui/material/colors";
+
 // import IconButton from "@mui/material/IconButton";
 // import MenuIcon from "@mui/icons-material/Menu";
 import { Container } from "@mui/material";
@@ -29,13 +31,13 @@ function Navbar() {
             <Toolbar>
               <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
                 <Link to='/dashboard/all-jobs'>
-                  <Button color='inherit'>View All Jobs</Button>
+                  <Button style={{ color: "white" }}>View All Jobs</Button>
                 </Link>
                 <Link to='/dashboard'>
-                  <Button color='inherit'>Add Job</Button>
+                  <Button style={{ color: "white" }}>Add Job</Button>
                 </Link>
                 <Link to='/dashboard/all-jobs'>
-                  <Button color='inherit'>Admin</Button>
+                  <Button style={{ color: "white" }}>Admin</Button>
                 </Link>
               </Typography>
               <Button color='inherit' onClick={logoutUser}>
