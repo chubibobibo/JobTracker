@@ -16,6 +16,8 @@
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
     "axios": "^1.6.4",
+    "dayjs": "^1.11.10",
+    "days": "^1.1.1",
     "react": "^18.2.0",
     "react-cookie": "^7.0.0",
     "react-dom": "^18.2.0",

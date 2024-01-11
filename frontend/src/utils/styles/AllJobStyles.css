@@ -4,7 +4,95 @@
   justify-content: center;
 }
 
+.jobGridContainer {
+  margin-bottom: 2rem;
+}
+
 .gridContainer {
   display: flex;
   justify-content: center;
+}
+
+.mainGrid {
+  display: flex;
+  justify-content: center;
+}
+
+.mainIcon {
+  background-color: green;
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 5px;
+  text-transform: capitalize;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.mainh1 {
+  margin: 0;
+  align-self: center;
+}
+
+.companyName {
+  display: flex;
+  text-transform: capitalize;
+  font-size: large;
+  border-bottom: 1.5px solid;
+}
+
+.jobItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.position {
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.joblocation {
+  text-align: left;
+  text-transform: capitalize;
+}
+.jobstatus {
+  text-align: center;
+  text-transform: capitalize;
+  background-color: green;
+  border-radius: 10px;
+  max-width: 5rem;
+}
+.jobtype {
+  text-align: left;
+  text-transform: capitalize;
+}
+.date {
+  text-align: left;
+  text-transform: capitalize;
+}
+
+/* custom colors for jobstatus*/
+.pending {
+  background-color: yellow;
+  border-radius: 10px;
+  max-width: 5rem;
+  border: 1px solid gray;
+  /* color: white; */
+}
+
+.declined {
+  background-color: red;
+  border-radius: 10px;
+  max-width: 5rem;
+  border: 1px solid gray;
+  color: white;
+}
+
+.interview {
+  background-color: green;
+  border-radius: 10px;
+  max-width: 5rem;
+  border: 1px solid gray;
+  color: white;
 }
