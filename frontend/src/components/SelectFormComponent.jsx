@@ -5,27 +5,35 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import NativeSelect from "@mui/material/Select";
 
-function SelectFormComponent({ selectData, handleChange, label, status }) {
+function SelectFormComponent({
+  selectData,
+  handleChange,
+  label,
+  status,
+  defaultValues,
+}) {
+  console.log(defaultValues);
   return (
     <>
       <div>
         <Box sx={{ minWidth: 120 }} className='inputBox'>
-          <FormControl fullWidth>
+          <FormControl fullWidth size='small'>
             <InputLabel id={label}>{label}</InputLabel>
-            <Select
+            <NativeSelect
               labelId={label}
               id={label}
               name={label}
               value={selectData.jobStatus}
-              label='Age'
+              label={label}
               onChange={handleChange}
+              // defaultValue={selectData.jobStatus}
             >
               <MenuItem value={status.pending}>{status.pending}</MenuItem>
               <MenuItem value={status.interview}>{status.interview}</MenuItem>
               <MenuItem value={status.declined}>{status.declined}</MenuItem>
-            </Select>
+            </NativeSelect>
           </FormControl>
         </Box>
       </div>

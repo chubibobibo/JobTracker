@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import "../utils/styles/registerFormContainer.css";
 
 // eslint-disable-next-line react/prop-types
-function RegFormComponent({ label, name, type }) {
+function RegFormComponent({ label, name, type, defaultValues }) {
   return (
     <div>
       <div className='registerFormContainer'>
@@ -17,6 +17,7 @@ function RegFormComponent({ label, name, type }) {
           size='small'
           type={type}
           name={name}
+          defaultValue={defaultValues}
         />
       </div>
     </div>
