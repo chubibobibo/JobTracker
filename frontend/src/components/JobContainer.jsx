@@ -68,7 +68,7 @@ function JobContainer() {
                 </div>
                 <div className='jobtype'>
                   <FaPen className='icons' size='1.2rem' />
-                  {newJobsData.jobtype}
+                  {newJobsData.jobType}
                 </div>
                 <div className='date'>
                   <FaRegCalendarDays className='icons' size='1.2rem' /> {date}
@@ -83,7 +83,7 @@ function JobContainer() {
                     className='linkbtn'
                     to={`/dashboard/edit-job/${newJobsData._id}`}
                   >
-                    <ButtonComponent label={"Edit Job"} />
+                    <ButtonComponent label={"Edit Job"} color={"warning"} />
                   </Link>
                 </div>
               </Grid>

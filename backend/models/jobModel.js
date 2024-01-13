@@ -21,7 +21,7 @@ const JobSchema = new Schema(
       default: "pending",
     },
 
-    jobtype: {
+    jobType: {
       type: String,
       enum: Object.values(JOB_TYPE),
       required: true,
