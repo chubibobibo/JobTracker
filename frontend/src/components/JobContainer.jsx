@@ -9,6 +9,8 @@ import { useContext } from "react";
 //import the context we created in the parent component
 import { AllJobsContext } from "../pages/AllJobs.jsx";
 
+import { Link } from "react-router-dom";
+
 //date formatter
 import day from "dayjs";
 import advanceFormat from "dayjs/plugin/advancedFormat";
@@ -39,6 +41,7 @@ function JobContainer() {
           >
             <Item className='jobItem'>
               <Grid className='mainGrid'>
+                {/* one letter icon */}
                 <Grid className='mainIcon' xs={4}>
                   <h1 className='mainh1'> {newJobsData.company[0]}</h1>
                 </Grid>
@@ -56,6 +59,14 @@ function JobContainer() {
                 </div>
                 <div className='date'> {date}</div>
                 <br />
+                <div>
+                  <Link
+                    className='linkbtn'
+                    to={`/dashboard/edit-job/${newJobsData._id}`}
+                  >
+                    {newJobsData._id}
+                  </Link>
+                </div>
               </Grid>
             </Item>
           </Grid>

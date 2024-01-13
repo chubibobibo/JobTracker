@@ -72,27 +72,33 @@
   text-transform: capitalize;
 }
 
+.linkbtn {
+  text-align: left;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
 /* custom colors for jobstatus*/
 .pending {
-  background-color: yellow;
-  border-radius: 10px;
+  background-color: rgba(255, 166, 0, 0.544);
+  border-radius: 5px;
   max-width: 5rem;
-  border: 1px solid gray;
+  border: 1px solid rgb(118, 77, 2);
   /* color: white; */
 }
 
 .declined {
-  background-color: red;
-  border-radius: 10px;
+  background-color: rgba(255, 0, 0, 0.3);
+  border-radius: 5px;
   max-width: 5rem;
   border: 1px solid gray;
-  color: white;
+  color: rgb(91, 2, 2);
 }
 
 .interview {
-  background-color: green;
-  border-radius: 10px;
+  background-color: rgba(255, 255, 0, 0.579);
+  border-radius: 5px;
   max-width: 5rem;
   border: 1px solid gray;
-  color: white;
+  color: rgb(133, 133, 2);
 }

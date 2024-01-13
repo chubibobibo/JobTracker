@@ -31,7 +31,7 @@ function Landing() {
             <ColorButton variant='contained' className='buttonLanding'>
               <Link
                 to='/register'
-                style={{ textDecoration: "none", color: "darkGray" }}
+                style={{ textDecoration: "none", color: "white" }}
               >
                 Register
               </Link>
@@ -39,7 +39,7 @@ function Landing() {
             <ColorButton variant='contained' className='buttonLanding'>
               <Link
                 to='/login'
-                style={{ textDecoration: "none", color: "darkGray" }}
+                style={{ textDecoration: "none", color: "white" }}
                 className='linkLanding'
               >
                 Login
