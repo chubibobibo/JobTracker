@@ -47,6 +47,7 @@ export const action = async ({ request, params }) => {
   const newData = Object.fromEntries(formData);
   try {
     await axios.patch(`/api/jobs/${params.id}`, newData);
+    toast.success("Job entry updated");
     return redirect("/dashboard/all-jobs");
   } catch (err) {
     console.log(err);

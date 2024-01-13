@@ -19,7 +19,7 @@
 }
 
 .mainIcon {
-  background-color: green;
+  background-color: rgb(40, 186, 202);
   max-width: 3rem;
   max-height: 3rem;
   border-radius: 5px;
@@ -33,6 +33,10 @@
 .mainh1 {
   margin: 0;
   align-self: center;
+}
+
+.secondaryGrid {
+  display: inline;
 }
 
 .companyName {
@@ -50,11 +54,13 @@
 .position {
   text-align: left;
   text-transform: capitalize;
+  margin-bottom: 0.5rem;
 }
 
 .joblocation {
   text-align: left;
   text-transform: capitalize;
+  margin-bottom: 0.5rem;
 }
 .jobstatus {
   text-align: center;
@@ -62,20 +68,27 @@
   background-color: green;
   border-radius: 10px;
   max-width: 5rem;
+  margin-bottom: 0.5rem;
 }
 .jobtype {
   text-align: left;
   text-transform: capitalize;
+  margin-bottom: 0.5rem;
 }
 .date {
   text-align: left;
   text-transform: capitalize;
+  margin-bottom: 0.5rem;
 }
 
 .linkbtn {
   text-align: left;
   text-transform: capitalize;
   text-decoration: none;
+}
+
+.icons {
+  margin-right: 1rem;
 }
 
 /* custom colors for jobstatus*/
