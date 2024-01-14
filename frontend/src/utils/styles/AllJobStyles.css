@@ -5,7 +5,7 @@
 }
 
 .jobGridContainer {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .gridContainer {
@@ -89,6 +89,18 @@
 
 .icons {
   margin-right: 1rem;
+}
+
+.btnContainer {
+  display: flex;
+}
+
+.linkBtnContainer {
+  margin-right: 1rem;
+}
+
+.alertContainer {
+  margin-top: 10rem;
 }
 
 /* custom colors for jobstatus*/

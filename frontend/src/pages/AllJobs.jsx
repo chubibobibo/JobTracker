@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 //hook that allows us to use data from a loader function (like action function) that we will create
 //we will need to instantiate useLoaderData to a varaible in order to access the data obtained by the loader function we created.
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 //creating context
@@ -26,7 +26,7 @@ export const loader = async () => {
     return allJobs;
   } catch (err) {
     console.log(err);
-    toast.err(err?.response.data.message);
+    toast.err(err?.response?.data?.message[0]);
     return err;
   }
 };
@@ -39,11 +39,26 @@ function AllJobs() {
   const allJobs = useLoaderData();
   // console.log(allJobs);
 
+  const navigate = useNavigate();
+
+  //function to delete a specific job
+  const deleteJob = async (id) => {
+    try {
+      const deletedJob = await axios.delete(`/api/jobs/${id}`);
+      toast.success("Job entry deleted");
+      navigate("/dashboard");
+      return deletedJob;
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data?.message[0]);
+    }
+  };
+
   return (
     <div className='allJobContainer'>
       <Box sx={{ flexGrow: 1 }} className='boxContainer'>
         {/* wrap the rendered components with context we created (AllJobsContext) then provide the value we want to pass */}
-        <AllJobsContext.Provider value={{ allJobs }}>
+        <AllJobsContext.Provider value={{ allJobs, deleteJob }}>
           <JobContainer />
         </AllJobsContext.Provider>
       </Box>
