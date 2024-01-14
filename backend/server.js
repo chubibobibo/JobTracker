@@ -10,11 +10,19 @@ import jobRouter from "./routes/jobRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
 
+//serving public folder
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+
 //middleware auth
 import { authenticateUser } from "./middleware/authMiddleware.js";
 
 //parsing cookies.
 import cookieParser from "cookie-parser";
+
+//serving public folder
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 import morgan from "morgan";
 //limiting use of morgan only during development
@@ -25,6 +33,8 @@ if (process.env.NODE_ENV === "development") {
 
 const app = express();
 
+// app.use(express.static("public"));
+app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(cors());
 //middleware to parse JSON data
 app.use(express.json());
@@ -41,6 +51,11 @@ async function main() {
 app.use("/api/jobs", authenticateUser, jobRouter); //specifies a prefix then the router exported.
 app.use("/api/users", userRouter);
 app.use("/api/admin", authenticateUser, adminRouter);
+
+//access to index.html in frontend
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+});
 
 //midlleware to handle error for pages not found.
 app.use("*", (req, res) => {

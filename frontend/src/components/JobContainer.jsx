@@ -36,13 +36,13 @@ function JobContainer() {
   const { allJobs, deleteJob } = jobsData; //destructure the data passed from the created context to access it.
   //   console.log(allJobs.data.allJobs);
   const allJobsData = allJobs.data.allJobs; //save the array of job entries to a varibale to map it.
-  // console.log(allJobsData[0].createdAt);
+  console.log(allJobsData);
 
   return (
     //map the data from the loader function
     //Grid component is like a div that we can set the size 12/12
     <Grid container spacing={2} className='allJobContainer'>
-      {allJobsData === 0 ? (
+      {allJobsData ? (
         allJobsData.map((newJobsData) => {
           //formatting the date from createdBy
           const date = day(newJobsData.createdAt).format("MMM Do, YYYY");
