@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "development") {
 
 const app = express();
 
-// app.use(express.static("public"));
+//serving public folder. Then npm run build in the frontend to create the folder dist. Copy it's content to the public folder in backend.
 app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(cors());
 //middleware to parse JSON data
