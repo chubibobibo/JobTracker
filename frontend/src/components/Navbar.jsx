@@ -27,17 +27,23 @@ function Navbar() {
     <div>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position='static'>
-          <Container maxWidth='md'>
+          <Container maxWidth='lg'>
             <Toolbar>
-              <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+              <Typography variant='h7' component='div' sx={{ flexGrow: 1 }}>
                 <Link to='/dashboard/all-jobs'>
-                  <Button style={{ color: "white" }}>View All Jobs</Button>
+                  <Button style={{ color: "white" }} size='small'>
+                    All Jobs
+                  </Button>
                 </Link>
                 <Link to='/dashboard'>
-                  <Button style={{ color: "white" }}>Add Job</Button>
+                  <Button style={{ color: "white" }} size='small'>
+                    Add Job
+                  </Button>
                 </Link>
                 <Link to='/dashboard/all-jobs'>
-                  <Button style={{ color: "white" }}>Admin</Button>
+                  <Button style={{ color: "white" }} size='small'>
+                    Admin
+                  </Button>
                 </Link>
               </Typography>
               <Button color='inherit' onClick={logoutUser}>
