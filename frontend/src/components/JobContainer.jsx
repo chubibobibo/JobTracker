@@ -42,7 +42,7 @@ function JobContainer() {
     //map the data from the loader function
     //Grid component is like a div that we can set the size 12/12
     <Grid container spacing={2} className='allJobContainer'>
-      {allJobsData ? (
+      {allJobsData.length !== 0 ? (
         allJobsData.map((newJobsData) => {
           //formatting the date from createdBy
           const date = day(newJobsData.createdAt).format("MMM Do, YYYY");
