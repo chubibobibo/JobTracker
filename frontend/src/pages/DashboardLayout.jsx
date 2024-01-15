@@ -17,8 +17,13 @@ function DashboardLayout() {
   //function to toggle dark mode
   //we will need thid function to be accessible to the navbar component using context instead of prop drilling.
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
     console.log(isDarkMode);
+    //modify dom (documnet.body.classList) using .toggle which accepts 2 arguments. First is the css class that we will be activating (dark-theme) living in the index.css. Second argument is  a force (newDarkMode) that will return a boolean. This will force the class to be active whenever it is true. The reason why we saved !isDarkMode into a variable.
+    document.body.classList.toggle("dark-theme", newDarkMode);
+    localStorage.setItem("darkTheme", newDarkMode);
+    console.log("dark theme toggled");
   };
 
   //logging out user
@@ -40,6 +45,7 @@ function DashboardLayout() {
       <DashboardContext.Provider
         value={{
           toggleDarkMode,
+          isDarkMode,
           logoutUser,
         }}
       >
