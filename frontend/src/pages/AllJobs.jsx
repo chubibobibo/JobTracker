@@ -22,7 +22,7 @@ import { createContext } from "react";
 export const loader = async () => {
   try {
     const allJobs = await axios.get("/api/jobs/");
-    console.log(allJobs);
+    // console.log(allJobs);
     return allJobs;
   } catch (err) {
     console.log(err);

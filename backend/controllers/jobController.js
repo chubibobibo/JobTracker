@@ -13,7 +13,7 @@ export const getAllJobs = async (req, res) => {
   const allJobs = await JobModel.find({ createdBy: author }); //search for job entries that have the createdBy property same as the req.user.userId.
   console.log(allJobs);
   if (allJobs.length === 0) {
-    console.log(allJobs);
+    // console.log(allJobs);
     return res.status(200).json({ message: "no jobs available", allJobs });
   }
   res.status(200).json({ message: "Jobs found", allJobs });
