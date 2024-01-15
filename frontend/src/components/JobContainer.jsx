@@ -36,7 +36,7 @@ function JobContainer() {
   const { allJobs, deleteJob } = jobsData; //destructure the data passed from the created context to access it.
   //   console.log(allJobs.data.allJobs);
   const allJobsData = allJobs.data.allJobs; //save the array of job entries to a varibale to map it.
-  console.log(allJobsData);
+  // console.log(allJobsData);
 
   return (
     //map the data from the loader function

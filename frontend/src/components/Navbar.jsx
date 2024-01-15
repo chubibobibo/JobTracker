@@ -4,11 +4,10 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-// import { red } from "@mui/material/colors";
-
-// import IconButton from "@mui/material/IconButton";
-// import MenuIcon from "@mui/icons-material/Menu";
 import { Container } from "@mui/material";
+
+//import toggleTheme component
+import ThemeToggle from "./ThemeToggle.jsx";
 
 //import useContext() to use the context we created.
 import { useContext } from "react";
@@ -40,12 +39,15 @@ function Navbar() {
                     Add Job
                   </Button>
                 </Link>
-                <Link to='/dashboard/all-jobs'>
+                {/* <Link to='/dashboard/all-jobs'>
                   <Button style={{ color: "white" }} size='small'>
                     Admin
                   </Button>
-                </Link>
+                </Link> */}
               </Typography>
+              <div onClick={toggleDarkMode}>
+                <ThemeToggle />
+              </div>
               <Button color='inherit' onClick={logoutUser}>
                 Logout
               </Button>

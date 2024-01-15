@@ -1,5 +1,6 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState } from "react";
 
 //pages import
 import HomeLayout from "./pages/HomeLayout.jsx";
@@ -20,7 +21,22 @@ import { action as editJobAction } from "./pages/EditJob.jsx";
 import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
 import { loader as editJobLoader } from "./pages/EditJob.jsx";
 
+//MUI dark theme
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Switch } from "@mui/material";
+
 function App() {
+  //create a state that will return a boolean. This will be used to whether apply the light or dark theme.
+  const [mode, setMode] = useState(true);
+
+  //creating a dark theme that we will pass to all the pages and components
+  const theme = createTheme({
+    palette: {
+      mode: mode ? "light" : "dark",
+    },
+  });
+
   const Router = createBrowserRouter([
     {
       path: "/",
@@ -68,10 +84,22 @@ function App() {
       ],
     },
   ]);
+
   return (
-    <div>
-      <RouterProvider router={Router} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div>
+        {/* switch with onClick event to cahnge the state (mode) to the opposite boolean value */}
+        <Switch
+          onClick={() => {
+            setMode(!mode);
+          }}
+        >
+          Dark Mode
+        </Switch>
+        <RouterProvider router={Router} />
+      </div>
+    </ThemeProvider>
   );
 }
 

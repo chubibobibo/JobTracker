@@ -12,6 +12,9 @@
   display: flex;
   justify-content: center;
 }
+.jobItem {
+  background-color: black;
+}
 
 .mainGrid {
   display: flex;
