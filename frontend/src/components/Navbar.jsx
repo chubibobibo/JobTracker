@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
 
 //import toggleTheme component
-import ThemeToggle from "./ThemeToggle.jsx";
+// import ThemeToggle from "./ThemeToggle.jsx";
 
 //import useContext() to use the context we created.
 import { useContext } from "react";
@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   const context = useContext(DashboardContext);
-  const { toggleDarkMode, logoutUser } = context;
+  const { logoutUser } = context;
   // console.log(cookies);
 
   return (
@@ -45,9 +45,9 @@ function Navbar() {
                   </Button>
                 </Link> */}
               </Typography>
-              <div onClick={toggleDarkMode}>
+              {/* <div onClick={toggleDarkMode}>
                 <ThemeToggle />
-              </div>
+              </div> */}
               <Button color='inherit' onClick={logoutUser}>
                 Logout
               </Button>

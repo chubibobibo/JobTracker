@@ -1,6 +1,7 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 //pages import
 import HomeLayout from "./pages/HomeLayout.jsx";
@@ -30,12 +31,29 @@ function App() {
   //create a state that will return a boolean. This will be used to whether apply the light or dark theme.
   const [mode, setMode] = useState(true);
 
+  //NOTE: janky application of dark mode persistence. used useRef to obtain current value of mode then used useEffect to set the mode state to the previous value.
+  const prevMode = useRef(mode);
+
   //creating a dark theme that we will pass to all the pages and components
   const theme = createTheme({
     palette: {
       mode: mode ? "light" : "dark",
+      // mode: "dark",
     },
   });
+
+  //Trial
+  const toggler = () => {
+    setMode(!mode);
+  };
+
+  //NOTE: janky application of dark mode persistence. used useRef to obtain current value of mode then used useEffect to set the mode state to the previous value.
+  useEffect(() => {
+    setMode(!prevMode.current);
+    // setMode(!prevMode.current);
+  }, [prevMode]);
+
+  console.log(mode);
 
   const Router = createBrowserRouter([
     {
@@ -90,11 +108,7 @@ function App() {
       <CssBaseline />
       <div>
         {/* switch with onClick event to cahnge the state (mode) to the opposite boolean value */}
-        <Switch
-          onClick={() => {
-            setMode(!mode);
-          }}
-        >
+        <Switch checked={!mode} onClick={toggler}>
           Dark Mode
         </Switch>
         <RouterProvider router={Router} />
