@@ -39,11 +39,11 @@ function Navbar() {
                     Add Job
                   </Button>
                 </Link>
-                {/* <Link to='/dashboard/all-jobs'>
+                <Link to='/dashboard/admin'>
                   <Button style={{ color: "white" }} size='small'>
                     Admin
                   </Button>
-                </Link> */}
+                </Link>
               </Typography>
               {/* <div onClick={toggleDarkMode}>
                 <ThemeToggle />

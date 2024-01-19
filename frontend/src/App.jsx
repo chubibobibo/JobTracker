@@ -13,6 +13,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import AddJob from "./pages/AddJob.jsx";
 import AllJobs from "./pages/AllJobs.jsx";
 import EditJob from "./pages/EditJob.jsx";
+import Admin from "./pages/Admin.jsx";
 
 //react router action imports
 import { action as registerAction } from "./pages/Register.jsx";
@@ -21,6 +22,7 @@ import { action as newJobAction } from "./pages/AddJob.jsx";
 import { action as editJobAction } from "./pages/EditJob.jsx";
 import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
 import { loader as editJobLoader } from "./pages/EditJob.jsx";
+import { loader as adminLoader } from "./pages/Admin.jsx";
 
 //MUI dark theme
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -96,6 +98,11 @@ function App() {
               element: <EditJob />,
               loader: editJobLoader,
               action: editJobAction,
+            },
+            {
+              path: "admin",
+              element: <Admin />,
+              loader: adminLoader,
             },
           ],
         },
