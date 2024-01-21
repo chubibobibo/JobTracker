@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLoaderData } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import { useState } from "react";
 
@@ -9,10 +9,24 @@ import axios from "axios";
 //importing context created
 import DashboardContext from "../customHooks/DashboardContext.js";
 
+//implement loader function to obtain the data of logged in user
+export const loader = async () => {
+  try {
+    const loggedUser = await axios.get("/api/admin/current-user");
+    console.log(loggedUser);
+    return loggedUser;
+  } catch (err) {
+    toast.error(err);
+    console.log(err);
+    return err;
+  }
+};
+
 function DashboardLayout() {
   const [isDarkMode, setIsDarkMode] = useState(false); //state for darkmode
   const navigate = useNavigate();
-  const user = "Lester";
+  //obtain data from loader and save it to a var, we will be passing it to the Navbar component using DashboardContext.
+  const user = useLoaderData();
 
   //function to toggle dark mode
   //we will need thid function to be accessible to the navbar component using context instead of prop drilling.
@@ -47,6 +61,7 @@ function DashboardLayout() {
           toggleDarkMode,
           isDarkMode,
           logoutUser,
+          user,
         }}
       >
         <Navbar />

@@ -3,6 +3,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+//css
+import "./utils/styles/appStyles.css";
+
+//react icons
+import { FaMoon } from "react-icons/fa";
+import { IoMdSunny } from "react-icons/io";
+
 //pages import
 import HomeLayout from "./pages/HomeLayout.jsx";
 import Login from "./pages/Login.jsx";
@@ -23,6 +30,7 @@ import { action as editJobAction } from "./pages/EditJob.jsx";
 import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
 import { loader as editJobLoader } from "./pages/EditJob.jsx";
 import { loader as adminLoader } from "./pages/Admin.jsx";
+import { loader as currentUser } from "./pages/DashboardLayout.jsx";
 
 //MUI dark theme
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -51,11 +59,11 @@ function App() {
 
   //NOTE: janky application of dark mode persistence. used useRef to obtain current value of mode then used useEffect to set the mode state to the previous value.
   useEffect(() => {
-    setMode(!prevMode.current);
+    setMode(prevMode.current);
     // setMode(!prevMode.current);
-  }, [prevMode]);
+  }, []);
 
-  console.log(mode);
+  // console.log(mode);
 
   const Router = createBrowserRouter([
     {
@@ -82,6 +90,7 @@ function App() {
         {
           path: "dashboard",
           element: <DashboardLayout />,
+          loader: currentUser,
           children: [
             {
               index: true,
@@ -115,10 +124,14 @@ function App() {
       <CssBaseline />
       <div>
         {/* switch with onClick event to cahnge the state (mode) to the opposite boolean value */}
-        <Switch checked={!mode} onClick={toggler}>
-          Dark Mode
-        </Switch>
-        <RouterProvider router={Router} />
+        <div className='appContainer'>
+          <IoMdSunny />
+          <Switch checked={!mode} onClick={toggler}>
+            Dark Mode
+          </Switch>
+          <FaMoon />
+          <RouterProvider router={Router} />
+        </div>
       </div>
     </ThemeProvider>
   );

@@ -5,6 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
+import { useLoaderData } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 //import toggleTheme component
 // import ThemeToggle from "./ThemeToggle.jsx";
@@ -18,9 +21,12 @@ import DashboardContext from "../customHooks/DashboardContext";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  //ontaining data from the context (DashboardContext)
   const context = useContext(DashboardContext);
-  const { logoutUser } = context;
-  // console.log(cookies);
+
+  //obtaining data from the loader
+  const { logoutUser, user } = context;
+  // console.log(user);
 
   return (
     <div>
@@ -39,11 +45,14 @@ function Navbar() {
                     Add Job
                   </Button>
                 </Link>
-                <Link to='/dashboard/admin'>
-                  <Button style={{ color: "white" }} size='small'>
-                    Admin
-                  </Button>
-                </Link>
+                {/* hiding the admin button  */}
+                {user?.data?.currentUser?.role === "admin" && (
+                  <Link to='/dashboard/admin'>
+                    <Button style={{ color: "white" }} size='small'>
+                      Admin
+                    </Button>
+                  </Link>
+                )}
               </Typography>
               {/* <div onClick={toggleDarkMode}>
                 <ThemeToggle />
