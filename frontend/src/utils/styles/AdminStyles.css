@@ -1,0 +1,15 @@
+.adminContainer {
+  display: flex;
+  max-width: 70rem;
+  margin: auto;
+}
+
+.totalJobsContainer {
+  display: flex;
+}
+
+.jobTitle {
+  margin: 0.5rem;
+  font-size: large;
+  font-weight: 500;
+}
