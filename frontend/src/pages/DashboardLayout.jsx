@@ -13,7 +13,7 @@ import DashboardContext from "../customHooks/DashboardContext.js";
 export const loader = async () => {
   try {
     const loggedUser = await axios.get("/api/admin/current-user");
-    console.log(loggedUser);
+    // console.log(loggedUser);
     return loggedUser;
   } catch (err) {
     toast.error(err);
@@ -25,6 +25,7 @@ export const loader = async () => {
 function DashboardLayout() {
   const [isDarkMode, setIsDarkMode] = useState(false); //state for darkmode
   const navigate = useNavigate();
+
   //obtain data from loader and save it to a var, we will be passing it to the Navbar component using DashboardContext.
   const user = useLoaderData();
 
@@ -65,7 +66,7 @@ function DashboardLayout() {
         }}
       >
         <Navbar />
-        <Outlet />
+        <Outlet context={user} />
       </DashboardContext.Provider>
     </div>
   );
