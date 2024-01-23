@@ -25,11 +25,13 @@ export const action = async ({ request }) => {
     //sending the raw formData (not converted to an object )
     const updateUser = await axios.patch("/api/admin/update-user", formData);
     toast.success("User updated");
-    return updateUser;
+    return null;
   } catch (err) {
     console.log(err);
     toast.error(err?.response?.data?.message);
+    return err;
   }
+  return null;
 };
 
 function Profile() {
@@ -39,7 +41,7 @@ function Profile() {
   const isSubmitting = navigation.state === "submitting";
   //   exact path of the userData
   const user = userData.data.currentUser;
-  console.log(user);
+  //   console.log(user);
 
   return (
     <div className='registerContainer'>

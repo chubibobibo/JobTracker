@@ -13,7 +13,7 @@ import DashboardContext from "../customHooks/DashboardContext.js";
 export const loader = async () => {
   try {
     const loggedUser = await axios.get("/api/admin/current-user");
-    console.log(loggedUser);
+    // console.log(loggedUser);
     return loggedUser;
   } catch (err) {
     toast.error(err);

@@ -3,6 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
+//image hosting
+import cloudinary from "cloudinary";
+
 import { ExpressError } from "./errors/customError.js";
 import mongoose from "mongoose";
 //routes
@@ -32,6 +35,13 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const app = express();
+
+//CONFIGURING cloudinary env variables
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+});
 
 //serving public folder. Then npm run build in the frontend to create the folder dist. Copy it's content to the public folder in backend.
 app.use(express.static(path.resolve(__dirname, "./public")));
