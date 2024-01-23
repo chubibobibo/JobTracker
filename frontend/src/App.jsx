@@ -28,6 +28,7 @@ import { action as registerAction } from "./pages/Register.jsx";
 import { action as loginAction } from "./pages/Login.jsx";
 import { action as newJobAction } from "./pages/AddJob.jsx";
 import { action as editJobAction } from "./pages/EditJob.jsx";
+import { action as updateUserAction } from "./pages/Profile.jsx";
 import { loader as allJobsLoader } from "./pages/AllJobs.jsx";
 import { loader as editJobLoader } from "./pages/EditJob.jsx";
 import { loader as adminLoader } from "./pages/Admin.jsx";
@@ -117,6 +118,7 @@ function App() {
             {
               path: "profile",
               element: <Profile />,
+              action: updateUserAction,
             },
           ],
         },

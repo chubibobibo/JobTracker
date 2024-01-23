@@ -2,6 +2,7 @@
 import { useOutletContext } from "react-router-dom";
 import { Link, Form, redirect, useNavigation } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //imports MUI
 import Button from "@mui/material/Button";
@@ -9,6 +10,27 @@ import Stack from "@mui/material/Stack";
 
 //import components
 import RegFormComponent from "../components/RegFormComponent";
+
+//action function to call API to update user
+//we will not be converting the data we recieve from API to a usebale object because this form is sendin a file as well.
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  //obtain the file from formData recieved
+  const file = formData.get("avatar"); //avatar is the name of the file sent
+  //checking for image size
+  if (file && file.size > 500000) {
+    toast.error("image cannot be more than 5mb");
+  }
+  try {
+    //sending the raw formData (not converted to an object )
+    const updateUser = await axios.patch("/api/admin/update-user", formData);
+    toast.success("User updated");
+    return updateUser;
+  } catch (err) {
+    console.log(err);
+    toast.error(err?.response?.data?.message);
+  }
+};
 
 function Profile() {
   const userData = useOutletContext();
@@ -26,6 +48,8 @@ function Profile() {
         {/* used Stack to have the inputs in one column */}
         <Stack spacing={2}>
           <h1 className='regLabel'>Your Profile</h1>
+          <p>Image should not exceed 5mb</p>
+          <RegFormComponent type='file' label='avatar' name='avatar' />
           <RegFormComponent
             type='text'
             label='name'

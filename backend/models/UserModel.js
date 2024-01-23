@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema({
     default: "user", //specify a default user because upon creation of user we will be checking if the created account is the first in the database. If account it first give it an admin role else refer to default value.
     required: true,
   },
+  avatar: {
+    type: String,
+    avatarPublicId: String,
+  },
 });
 
 export default mongoose.model("UserModel", UserSchema);
