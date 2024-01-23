@@ -53,10 +53,12 @@ function Navbar() {
                     </Button>
                   </Link>
                 )}
+                <Link to='/dashboard/profile'>
+                  <Button style={{ color: "white" }} size='small'>
+                    profile
+                  </Button>
+                </Link>
               </Typography>
-              {/* <div onClick={toggleDarkMode}>
-                <ThemeToggle />
-              </div> */}
               <Button color='inherit' onClick={logoutUser}>
                 Logout
               </Button>
