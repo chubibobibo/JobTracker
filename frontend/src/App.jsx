@@ -21,6 +21,7 @@ import AddJob from "./pages/AddJob.jsx";
 import AllJobs from "./pages/AllJobs.jsx";
 import EditJob from "./pages/EditJob.jsx";
 import Admin from "./pages/Admin.jsx";
+import Profile from "./pages/Profile.jsx";
 
 //react router action imports
 import { action as registerAction } from "./pages/Register.jsx";
@@ -112,6 +113,10 @@ function App() {
               path: "admin",
               element: <Admin />,
               loader: adminLoader,
+            },
+            {
+              path: "profile",
+              element: <Profile />,
             },
           ],
         },
