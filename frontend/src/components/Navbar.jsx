@@ -63,13 +63,15 @@ function Navbar() {
                   </Button>
                 </Link>
               </Typography>
-              <div className='userAvatarContainer'>
-                <img
-                  className='userAvatar'
-                  src={user.data.currentUser.avatarUrl}
-                  alt=''
-                />
-              </div>
+              {user?.data?.currentUser?.avatarUrl && (
+                <div className='userAvatarContainer'>
+                  <img
+                    className='userAvatar'
+                    src={user.data.currentUser.avatarUrl}
+                    alt=''
+                  />
+                </div>
+              )}
               <Button color='inherit' onClick={logoutUser}>
                 Logout
               </Button>
