@@ -50,7 +50,7 @@ function AllJobs() {
       return deletedJob;
     } catch (err) {
       console.log(err);
-      toast.error(err?.response?.data?.message[0]);
+      toast.error(err?.response?.data?.message);
     }
   };
 
