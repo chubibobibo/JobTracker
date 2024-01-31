@@ -119,3 +119,5 @@ export const deleteJob = async (req, res) => {
   }
   res.status(200).json({ message: `job ${id} is deleted` });
 };
+
+//add uploads folder
