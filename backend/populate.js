@@ -13,7 +13,7 @@ try {
   //connect ot the database
   mongoose.connect(process.env.MONGO_URL);
   //search for the test user using it's email to use it's id in the createdBy property of each new job entry. This will allow us to restrict which job entries the test user can see.
-  const foundTestUser = await UserModel.findOne({ email: "test@gmail.com" });
+  const foundTestUser = await UserModel.findOne({ email: "admin@gmail.com" });
   console.log(foundTestUser._id);
   //obtain the MOCK_DATA that we created in the utils folder and parse it as json file.
   const jsonJobs = await JSON.parse(

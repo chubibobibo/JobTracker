@@ -9,8 +9,55 @@ import { ExpressError } from "../errors/customError.js";
 //all job routes needs an authenticated user.
 //get all jobs
 export const getAllJobs = async (req, res) => {
-  const author = req.user.userId;
-  const allJobs = await JobModel.find({ createdBy: author }); //search for job entries that have the createdBy property same as the req.user.userId.
+  //search functionality
+  //destructure the search key from req.query.
+  //destructured the keys that we named the queries
+  const { search, jobStatus, jobType, sort } = req.query;
+
+  //object that will contain the default argument that we will pass to JobModel.find()
+  const queryObj = {
+    createdBy: req.user.userId,
+  };
+
+  //checking if there is a query named search. If it exists, then create new key (position, location, company) in the queryObj that will be used as argument for the JobModel.find() method.
+  //we will be using $OR logical operator because we are going to compare the string from the query (search) against 3 different properties (company, location, position)
+  //Then for the value of the key that we created in the queryObj, we  will be using $regex to comapre the string from the query (search) to the 3 properties (company, position, jobLocation) in our JobModel. 'i' is to ignore letter case.
+  if (search) {
+    queryObj.$or = [
+      {
+        position: { $regex: search, $options: "i" },
+      },
+      {
+        company: { $regex: search, $options: "i" },
+      },
+      {
+        jobLocation: { $regex: search, $options: "i" },
+      },
+    ];
+  }
+
+  //searching for jobStatus and jobType
+  //check if jobStatus and jobtype exist and does not have a value of 'all', then create a new key-value pait in the queryObj having a value that comes  from the query (named jobStatus or jobType)
+  if (jobStatus && jobStatus !== "all") {
+    queryObj.jobStatus = jobStatus;
+  }
+
+  if (jobType && jobType !== "all") {
+    queryObj.jobType = jobType;
+  }
+
+  //Sorting functionality dynamically
+  //object that will contain the options for sorting
+  const sortOptions = {
+    newest: "-createdAt",
+    oldest: "createdAt",
+    "a-z": "position",
+    "z-a": "-position",
+  };
+  //access the value of the key using the string we obtained from the sort query (from req.query)
+  const sortingKey = sortOptions[sort];
+
+  const allJobs = await JobModel.find(queryObj).sort(sortingKey); //sorting the result of JobModel.find depending on the string from req.query
   console.log(allJobs);
   if (allJobs.length === 0) {
     // console.log(allJobs);
