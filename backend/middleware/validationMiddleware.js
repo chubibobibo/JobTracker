@@ -39,13 +39,13 @@ export const validateJobInput = withValidationErrors([
   body("company")
     .notEmpty()
     .withMessage("company should not be empty")
-    .isLength({ max: 15 })
+    .isLength({ max: 40 })
     .withMessage("company name should not exceed 15 characters"),
   //position input field validation
   body("position")
     .notEmpty()
     .withMessage("position should not be empty")
-    .isLength({ max: 15 })
+    .isLength({ max: 40 })
     .withMessage("position should not exceed 15 characters"),
   //jobLocation input field validation
   body("jobLocation")
