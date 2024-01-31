@@ -9,6 +9,9 @@ import {
 //middleware import
 import upload from "../middleware/multerMiddleware.js";
 
+//test user check middleware
+import { checkTestUser } from "../middleware/authMiddleware.js";
+
 const router = Router();
 
 //import validations
@@ -22,6 +25,7 @@ router.get("/current-user", getCurrentUser);
 router.patch(
   "/update-user",
   upload.single("avatar"),
+  checkTestUser,
   validateUpdateUser,
   updateUser
 );

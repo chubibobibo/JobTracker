@@ -8,6 +8,8 @@ import {
   useActionData,
 } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
 //import formComponent
 import RegFormComponent from "../components/RegFormComponent.jsx";
 
@@ -39,7 +41,6 @@ export const action = async ({ request }) => {
     errors.message = "Password must be atleast 8 characters";
     return errors;
   }
-
   try {
     await axios.post("/api/users/login", data);
     toast.success(`Welcome ${data.email}`);
@@ -58,6 +59,28 @@ function Login() {
   //instantiate useNavigation()
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+
+  //useNavigate to direct to a new page (must be used in the JSX unlike redirecct which is used in the component function)
+  const navigate = useNavigate();
+
+  //async function as event handler to call login API with test user credentials
+  const loginTestUser = async () => {
+    //object that contains the test user credentials which we will use as the data for the API call instead of from the rteqreq.body(form)
+    const testUserData = {
+      email: "test@gmail.com",
+      password: "testtest",
+    };
+    //API call
+    try {
+      await axios.post("/api/users/login", testUserData);
+      navigate("/dashboard");
+      toast.success("Test drive the application");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data?.message);
+    }
+  };
+
   return (
     <div className='registerContainer'>
       <Form method='post' className='regForm'>
@@ -76,6 +99,15 @@ function Login() {
             disabled={isSubmitting}
           >
             {isSubmitting ? "Logging in..." : "Login"}
+          </Button>
+          {/* type=button to avoid submititng the form */}
+          <Button
+            variant='contained'
+            color='success'
+            type='button'
+            onClick={loginTestUser}
+          >
+            Test the app
           </Button>
         </Stack>
       </Form>

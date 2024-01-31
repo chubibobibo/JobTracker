@@ -5,9 +5,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
+
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+//import css
+import "../utils/styles/NavbarStyles.css";
 
 //import toggleTheme component
 // import ThemeToggle from "./ThemeToggle.jsx";
@@ -26,7 +30,7 @@ function Navbar() {
 
   //obtaining data from the loader
   const { logoutUser, user } = context;
-  // console.log(user);
+  console.log(user);
 
   return (
     <div>
@@ -59,6 +63,15 @@ function Navbar() {
                   </Button>
                 </Link>
               </Typography>
+              {user?.data?.currentUser?.avatarUrl && (
+                <div className='userAvatarContainer'>
+                  <img
+                    className='userAvatar'
+                    src={user.data.currentUser.avatarUrl}
+                    alt=''
+                  />
+                </div>
+              )}
               <Button color='inherit' onClick={logoutUser}>
                 Logout
               </Button>

@@ -1,0 +1,9 @@
+.userAvatarContainer {
+  display: flex;
+}
+
+.userAvatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100px;
+}

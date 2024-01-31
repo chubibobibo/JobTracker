@@ -19,9 +19,21 @@ export const authenticateUser = (req, res, next) => {
     //req.user can be accessed anywahere
     //basically userCookie contains the token we created that contains the userId and the role of the logged in user.
     req.user = jwt.verify(userCookie, process.env.JWT_SECRET);
-    console.log(req.user);
+    //creating testUser having a boolean value if the userId is same as the test user saved in the database.
+    const testUser = req.user.userId === "65b234185dd4a8e212eb8388"; //true or false
+    //creating new property for test user in the req.user using the value of the boolean returned (testUser), we will need this property for the authentication of a testUser in the routes. This will be needed for to check if the user is a testUser
+    req.user.testUser = testUser; //true=test user is logged in
   } catch (err) {
     console.log(err);
+  }
+  next();
+};
+
+//middleware to check if user is test user to restrict certain content
+export const checkTestUser = async (req, res, next) => {
+  if (req.user.testUser) {
+    //boolean checking if true
+    throw new ExpressError("Test user, Read Only.", 400);
   }
   next();
 };

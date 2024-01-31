@@ -6,6 +6,9 @@ import {
   validateParam,
 } from "../middleware/validationMiddleware.js";
 
+//importing test user middleware
+import { checkTestUser } from "../middleware/authMiddleware.js";
+
 //invoke router and save it toa variable;
 const router = Router();
 
@@ -20,9 +23,9 @@ import {
 
 //Routes: accepts path and the controller to be used.
 router.get("/", getAllJobs);
-router.post("/", validateJobInput, createJob);
+router.post("/", checkTestUser, validateJobInput, createJob);
 router.get("/:id", validateParam, getSingleJob);
-router.patch("/:id", validateParam, validateJobInput, updateJob);
-router.delete("/:id", validateParam, deleteJob);
+router.patch("/:id", checkTestUser, validateParam, validateJobInput, updateJob);
+router.delete("/:id", checkTestUser, validateParam, deleteJob);
 
 export default router;

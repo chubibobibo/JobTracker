@@ -40,7 +40,7 @@ export const action = async ({ request }) => {
     return redirect("/dashboard/all-jobs");
   } catch (err) {
     console.log(err);
-    toast.error(err?.response.data.message[0]); // if more than 1 error in validation. will return an array, to access every error we need to specify the first location in array
+    toast.error(err?.response.data.message); // if more than 1 error in validation. will return an array, to access every error we need to specify the first location in array
     return err;
   }
 };
