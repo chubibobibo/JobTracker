@@ -10,6 +10,8 @@ import JobContainer from "../components/JobContainer.jsx";
 //toast alerts
 import { toast } from "react-toastify";
 
+import SearchContainer from "../components/SearchContainer.jsx";
+
 //hook that allows us to use data from a loader function (like action function) that we will create
 //we will need to instantiate useLoaderData to a varaible in order to access the data obtained by the loader function we created.
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -19,14 +21,19 @@ import axios from "axios";
 import { createContext } from "react";
 
 //loader function
-export const loader = async () => {
+//passing the request body because it contains the url property
+export const loader = async ({ request }) => {
+  console.log(request);
   try {
-    const allJobs = await axios.get("/api/jobs/");
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(),
+    ]);
+    const allJobs = await axios.get("/api/jobs/", { params });
     // console.log(allJobs);
     return allJobs;
   } catch (err) {
     console.log(err);
-    toast.err(err?.response?.data?.message[0]);
+    toast.error(err?.response?.data?.message);
     return err;
   }
 };
@@ -59,6 +66,7 @@ function AllJobs() {
       <Box sx={{ flexGrow: 1 }} className='boxContainer'>
         {/* wrap the rendered components with context we created (AllJobsContext) then provide the value we want to pass */}
         <AllJobsContext.Provider value={{ allJobs, deleteJob }}>
+          <SearchContainer />
           <JobContainer />
         </AllJobsContext.Provider>
       </Box>
