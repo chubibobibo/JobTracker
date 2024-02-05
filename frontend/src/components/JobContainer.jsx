@@ -91,7 +91,7 @@ function JobContainer() {
                       className='linkbtn'
                       to={`/dashboard/edit-job/${newJobsData._id}`}
                     >
-                      <ButtonComponent label={"Edit Job"} color={"success"} />
+                      <ButtonComponent label={"Edit Job"} color={"info"} />
                     </Link>
                   </div>
                   <div className='linkBtnContainer'>
@@ -99,7 +99,7 @@ function JobContainer() {
                     <Button
                       variant='contained'
                       size='small'
-                      color='warning'
+                      color='info'
                       onClick={() => {
                         deleteJob(newJobsData._id);
                       }} //using a callback function because we need to pass an argument in the deleteJob function

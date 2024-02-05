@@ -1,0 +1,25 @@
+.searchContainer {
+  height: 15rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.regForm {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 1rem;
+}
+
+.selectForm {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  width: 15rem;
+  margin-right: auto;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

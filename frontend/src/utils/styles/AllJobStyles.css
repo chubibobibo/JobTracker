@@ -2,6 +2,7 @@
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  background-color: rgba(56, 82, 65, 0.307);
 }
 
 .jobGridContainer {

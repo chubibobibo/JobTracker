@@ -3,6 +3,7 @@
   justify-content: center;
   flex-direction: row;
   height: 30rem;
+  background-color: rgba(56, 82, 65, 0.307);
 }
 
 .addJobItem {

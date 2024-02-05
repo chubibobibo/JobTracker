@@ -7,14 +7,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/Select";
 
-function SelectFormComponent({
+function SelectFormComponent3({
   selectData,
   handleChange,
   label,
   status,
   // defaultValues,
 }) {
-  // console.log(defaultValues);
   return (
     <>
       <div>
@@ -25,14 +24,15 @@ function SelectFormComponent({
               labelId={label}
               id={label}
               name={label}
-              value={selectData.jobStatus}
+              value={selectData.sort}
               label={label}
               onChange={handleChange}
               // defaultValue={selectData.jobStatus}
             >
-              <MenuItem value={status.pending}>{status.pending}</MenuItem>
-              <MenuItem value={status.interview}>{status.interview}</MenuItem>
-              <MenuItem value={status.declined}>{status.declined}</MenuItem>
+              <MenuItem value={status.newest}>{status.newest}</MenuItem>
+              <MenuItem value={status.oldest}>{status.oldest}</MenuItem>
+              <MenuItem value={status.az}>{status.az}</MenuItem>
+              <MenuItem value={status.za}>{status.za}</MenuItem>
             </NativeSelect>
           </FormControl>
         </Box>
@@ -40,4 +40,4 @@ function SelectFormComponent({
     </>
   );
 }
-export default SelectFormComponent;
+export default SelectFormComponent3;
