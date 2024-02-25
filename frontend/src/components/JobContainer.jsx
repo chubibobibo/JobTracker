@@ -33,7 +33,7 @@ import { FaRegCalendarDays } from "react-icons/fa6";
 
 function JobContainer() {
   const jobsData = useContext(AllJobsContext); //instantiate the created context (AllJobscontext) using useContext
-  const { allJobs, deleteJob } = jobsData; //destructure the data passed from the created context to access it.
+  const { allJobs } = jobsData; //destructure the data passed from the created context to access it.
   //   console.log(allJobs.data.allJobs);
   const allJobsData = allJobs.data.allJobs; //save the array of job entries to a varibale to map it.
   // console.log(allJobsData);
@@ -105,9 +105,6 @@ function JobContainer() {
                         size='small'
                         color='info'
                         type='submit'
-                        // onClick={() => {
-                        //   deleteJob(newJobsData._id);
-                        // }} //using a callback function because we need to pass an argument in the deleteJob function
                       >
                         Delete Job
                       </Button>
