@@ -69,7 +69,7 @@ function SearchContainer() {
           <SelectFormComponent3
             selectData={selectData} //used to five value to the form
             handleChange={handleChange}
-            label={"sort"}
+            label={"sort by position"}
             status={sortingOptions} //for select input options
           />
           <div className='buttonContainer'>

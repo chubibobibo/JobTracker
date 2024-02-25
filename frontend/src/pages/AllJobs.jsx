@@ -25,6 +25,7 @@ import { createContext } from "react";
 export const loader = async ({ request }) => {
   console.log(request);
   try {
+    //searchParams obtains the queries from the url, .entries() iterates those queries into an array that contains 2 elements (parameter name and it's value)
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);
