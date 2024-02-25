@@ -11,7 +11,7 @@ import { useContext } from "react";
 //import the context we created in the parent component
 import { AllJobsContext } from "../pages/AllJobs.jsx";
 
-import { Link } from "react-router-dom";
+import { Link, Form } from "react-router-dom";
 
 //MUI alert when no jobs are found for a user
 import Alert from "@mui/material/Alert";
@@ -96,16 +96,22 @@ function JobContainer() {
                   </div>
                   <div className='linkBtnContainer'>
                     {/* <ButtonComponent label={"Delete Job"} color={"warning"} /> */}
-                    <Button
-                      variant='contained'
-                      size='small'
-                      color='info'
-                      onClick={() => {
-                        deleteJob(newJobsData._id);
-                      }} //using a callback function because we need to pass an argument in the deleteJob function
+                    <Form
+                      method='post'
+                      action={`/dashboard/delete-job/${newJobsData._id}`}
                     >
-                      Delete Job
-                    </Button>
+                      <Button
+                        variant='contained'
+                        size='small'
+                        color='info'
+                        type='submit'
+                        // onClick={() => {
+                        //   deleteJob(newJobsData._id);
+                        // }} //using a callback function because we need to pass an argument in the deleteJob function
+                      >
+                        Delete Job
+                      </Button>
+                    </Form>
                   </div>
                 </div>
               </Item>
